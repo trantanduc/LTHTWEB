@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header {
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin-bottom: 10px;
+}
+
+.content {
+    width: 500px;
+    height: 200px;
+    padding: 10px;
+    margin: 0 auto;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.content h2 {
+    text-transform: uppercase;
+}
+
+.content .title {
+    margin-bottom: 15px;
+}
+
+.content #inp {
+    width: 100%;
+    padding: 10px 12px;
+    outline: none;
+}
+
+</style>
+<body>
+    <div id="root">
+        <header class="header">
+            <h1><i>REGEX 7: BÀI TẬP CƠ BẢN JQUERY + REGEX</i></h1>
+        </header>
+
+        <div class="content">
+            <h2>Nhập dữ liệu thử vào ô bên dưới</h2>
+            <p class="title">Result: "<span class="result">Write anything to form.</span>"</p>
+            <input type="text" placeholder="write anything in sec 1..." id="inp">
+        </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+var result = $(".result")
+$("#inp").on("keyup", (e) => {
+    let data = e.target.value
+
+    switch(true) {
+        case /^0+\d{9}$/.test(data):
+            result.text("Số điện thoại hợp lệ");
+            break
+        case /^\d{10}$/.test(data):
+            result.text("Mã sinh viên hợp lệ")
+            break
+        case /^\d+$/.test(data):
+            result.text("Chuỗi toàn số")
+            break
+        case /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/.test(data):
+            result.text("Email hợp lệ")
+            break
+        case /[a-z0-9_]{15}/.test(data):
+            result.text("Tên đăng nhập hợp lệ")
+            break
+        case /(^[A-Z]{2})(\d{3}$)/.test(data):
+            result.text("Mã lớp hợp lệ")
+            break
+        case /(\d{1,2})\/(\d{1,2})\/(\d{1,4}$)/.test(data):
+            result.text("Định dạng ngày tháng hợp lệ")
+            break
+        default:
+            result.text("Write anything to form.")
+    }
+})
+</script>
+</body>
+</html>

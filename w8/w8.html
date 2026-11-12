@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore Online</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    <h1>Chao Mung den Bookstore Online</h1>
+    <div id="book-list">
+        <div class="book" data-genre="fiction">
+            <h3>Đac Nhan Tam</h3>
+            <p class="price">120.000đ</p>
+        </div>
+        <div class="book" data-genre="skill">
+            <h3>Tu Duy Nhanh va Cham</h3>
+            <p class="price">150.000đ</p>
+        </div>
+        <div class="book" data-genre="fiction">
+            <h3>Nha Gia Kim</h3>
+            <p class="price">89.000đ</p>
+        </div>
+        <button id="btnClick">Border fiction</button>
+        <button id="firstbook">First book</button>
+        <button id="newedition">Cập nhập sách</button>
+        <button id="doithuoctinh">Đổi thuộc tính sách</button>
+        <button id="checkbox">Check</button>
+
+
+        <input type="text" id="search-box" value="123456">
+        <input type="checkbox" id="agree-checkbox">
+    </div>
+    <script>
+        $(document).ready(function() {
+            console.log("jQuery đã sẵn sàng!");
+        });
+        $(function() {
+            console.log($(".book").length);
+        })
+        var btnClick = $('#btnClick');
+        console.log(btnClick);
+        btnClick.click(() => {
+            $("[data-genre='fiction']").css("border", "3px solid red");
+        });
+
+        var firstbook = $('#firstbook');
+        console.log(firstbook);
+        firstbook.click(() => {
+            console.log($(".book:first h3").text());
+        });
+
+        console.log($(".book:first h3").text());
+        var newedition = $('#newedition');
+        console.log(newedition);
+        newedition.click(() => {
+            $(".book:first h3").text("Đắc Nhân Tâm (new edition)");
+        });
+        $(".book:first .price").html("<strong>120.000đ</strong>");
+        var st = $("#search-box").val("new value");
+        console.log(st)
+        var doithuoctinh = $('#doithuoctinh');
+        console.log(doithuoctinh);
+        doithuoctinh.click(() => {
+            console.log($(".book:first").attr("data-genre"));
+            $(".book:first").attr("data-genre", "self-help");
+        });
+        var checkbox = ($("#checkbox")).click(() => {
+                $("#agree-checkbox").prop("checked", true)
+            })
+        console.log($(".book:first").data("genre"));
+        $(".price").css("color", "red")
+        $(".book:first").addClass("featured");
+        $(".book:first").removeClass("featured");
+        $(".book:first").toggleClass("featured");
+        console.log($(".book:first").hasClass("featured"));
+    </script>
+</body>
+
+</html>
